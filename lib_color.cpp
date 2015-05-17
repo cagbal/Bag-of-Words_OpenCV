@@ -56,38 +56,3 @@ std::vector<Mat> Colorful::convertHSV2BGR(cv::Mat hsv)
 
 	return bgr_channels;
 }
-
-// method that limits the hue value between a range
-cv::Mat Colorful::limitHue(cv::Mat hsv, cv::Mat bgr, float low_lim, float high_lim)
-{
-	// Input
-	// hsv is a Mat that contains image
-	// bgr is a Mat that contains BGR version of image
-	// low_lim is the lower limit of hue
-	// high_lim is the higher limit of hue
-	//
-	// Output
-	// image whose hue value is limited
-
-	Mat limited_im = Mat::zeros(576,480,CV_32F);
-
-	// Split the HSV channels 
-	vector<Mat> channels;
-
-	split(hsv, channels);
-
-	for(int i = 0; i < hsv.rows; i++)
-	{
-		for (int j = 0; j < hsv.cols; j++)
-		{
-			float value = channels.at(0).at<float>(i,j);			
-
-			if ((value < high_lim)&&(value > low_lim))
-			{			
-				limited_im.at<float>(i,j) = bgr.at<float>(i,j);
-			}
-		}
-	}
-
-	return limited_im;
-}

@@ -26,7 +26,4 @@ public:
 	// method to convert HSV to BGR
 	// and returns the each BGR channel seperately
 	std::vector<cv::Mat> convertHSV2BGR(cv::Mat);
-
-	// method that limits the hue value between a range
-	cv::Mat limitHue(cv::Mat, cv::Mat, float, float);
 };
